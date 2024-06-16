@@ -1,10 +1,15 @@
-async function getData() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  return {
-    message: "Hello, Dashboard!",
+"use client";
+
+import { useState } from "react";
+
+export default function Page() {
+  const [error, setError] = useState<boolean>(false);
+
+  const handleGetError = () => {
+    setError(!error);
   };
-}
-export default async function DashboardPage() {
-  const { message } = await getData();
-  return <h1>{message}</h1>;
+
+  return (
+    <>{error ? Error() : <button onClick={handleGetError}>Get Error</button>}</>
+  );
 }
